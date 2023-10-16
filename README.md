@@ -40,7 +40,9 @@ MCU寄存器配置工具
 4. 新增系统变量，新增`NODE_PATH`变量，值为`D:\Env\nodejs\node_global\node_modules`
 5. 修改系统变量，在系统变量中找到path，新增值为`%NODE_PATH%`
 
-### 修改镜像源（可选）
+### 下载慢的解决方法
+
+### 修改镜像源
 
 ```shell
 npm config set registry https://registry.npm.taobao.org
@@ -52,7 +54,21 @@ npm config set registry https://registry.npm.taobao.org
 > npm config list
 > ```
 
+### 直接从镜像仓库安装
 
+```shell
+npm install -g [package] --registry=https://registry.npm.taobao.org
+```
+
+### 使用`cnpm`安装
+
+```shell
+//首先安装cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+//使用cnpm进行安装，使用方法和npm相同
+cnpm install -g electron
+```
 
 
 
