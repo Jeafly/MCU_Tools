@@ -1,2 +1,134 @@
 # MCU_Tools
 MCU寄存器配置工具
+
+该仓库中不含依赖与环境，运行编译源码请在根文件夹中运行以下指令。
+
+## 安装node.js
+
+### 安装包获取
+
+去[node.js官网](https://nodejs.org/en/download/)下载安装包安装,推荐选择LTS版
+
+### 检测是否完成安装
+
+在`powershell`或者`cmd`窗口输入`node -v`,显示版本号表明安装成功
+
+### 修改存放目录（可选）
+
+1. 设置全局模块存放路径
+
+   ```shell
+   npm config set prefix "D:\Env\nodejs\node_global"
+   ```
+
+   
+
+2. 设置缓存文件夹
+
+   ```shell
+   npm config set cache "D:\Env\nodejs\node_global"
+   ```
+
+   > 设置完成后可执行以下命令查看是否成功
+   >
+   > ```shell
+   > npm config get cache
+   > npm config get prefix
+   > ```
+
+3. 更改用户变量，在用户变量中找到path，将`C:\Users\user\AppData\Roaming\npm`修改为`D:\Env\nodejs\node_global`
+4. 新增系统变量，新增`NODE_PATH`变量，值为`D:\Env\nodejs\node_global\node_modules`
+5. 修改系统变量，在系统变量中找到path，新增值为`%NODE_PATH%`
+
+### 修改镜像源（可选）
+
+```shell
+npm config set registry https://registry.npm.taobao.org
+```
+
+> 查看是否配置成功
+>
+> ```shell
+> npm config list
+> ```
+
+
+
+
+
+## 安装vue
+
+### 安装vue.js
+
+```shell
+npm install vue -g
+```
+
+`-g`是全局安装，指安装到global全局目录去，如果不加`-g`，模块就会安装到当前路径下的node_modules文件夹下，没有目录则自动创建。
+
+`npm`安装不成功的话可以使用上面说的淘宝的镜像进行安装（安装淘宝镜像见上面教程）。
+
+```she
+cnpm install vue -g
+```
+
+### 安装vue/cli脚手架
+
+```shell
+npm install -g @vue/cli
+```
+
+## 安装项目依赖
+
+### 安装ElementUI
+
+```shell
+npm i element-ui -S
+```
+
+### ~~添加调用代码~~
+
+在/src/main.js中添加以下代码
+
+```js
+import Element from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(Element)
+```
+
+### 全局安装 Electron
+
+```shell
+npm install electron -g
+```
+
+> 查看是否安装成功：
+>
+> ```shell
+> electron -v
+> ```
+>
+> 出现版本号表示安装成功
+
+### vue项目中添加Electron
+
+```shell
+vue add electron-builder
+```
+
+选择最新版本安装
+
+## 生产环境与编译
+
+### 生产环境
+
+```shell
+npm run electron:serve
+```
+
+### 最终编译
+
+```shell
+npm run electron:build
+```
+
