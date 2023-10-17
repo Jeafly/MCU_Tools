@@ -133,6 +133,14 @@ vue add electron-builder
 ```
 
 选择最新版本安装
+> 在安装electron-builder插件时，可能会遇到安装electron连接不上，导致node install安装失败
+> ```shell
+> //修改npm的config
+> npm config edit
+> // 在打开的文档中添加这两句话，重新安装即可
+> electron_mirror=https://npm.taobao.org/mirrors/electron/
+> electron-builder-binaries_mirror=https://npm.taobao.org/mirrors/electron-builder-binaries/
+> ```
 
 ## 生产环境与编译
 
