@@ -156,3 +156,188 @@ npm run electron:serve
 npm run electron:build
 ```
 
+# electron相关配置
+
+## 修改默认窗口大小
+
+修改 background.js中的createWindow()函数
+
+```js
+async function createWindow() {
+  // Create the browser window.
+  const win = new BrowserWindow({
++   width: 800,
++   height: 600,
+    webPreferences: {
+      // Use pluginOptions.nodeIntegration, leave this alone
+      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    },
+  })
+
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
+  } else {
+    createProtocol('app')
+    // Load the index.html when not in development
+    win.loadURL('app://./index.html')
+  }
+}
+```
+
+## 取消跨域限制
+
+修改 background.js中的createWindow()函数
+
+```js
+async function createWindow() {
+  // Create the browser window.
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
++     webSecurity: false,
+      // Use pluginOptions.nodeIntegration, leave this alone
+      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    },
+  })
+
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
+  } else {
+    createProtocol('app')
+    // Load the index.html when not in development
+    win.loadURL('app://./index.html')
+  }
+}
+```
+
+## 取消菜单栏显示
+
+修改background.js中的import
+
+```js
+ import { app, protocol, BrowserWindow, Menu } from 'electron'
+```
+
+修改 background.js中的createWindow()函数
+
+```js
+async function createWindow() {
+  // Create the browser window.
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      webSecurity: false,
+      // Use pluginOptions.nodeIntegration, leave this alone
+      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    },
+  })
+
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
+  } else {
+    createProtocol('app')
+    // Load the index.html when not in development
+    win.loadURL('app://./index.html')
+  }
++ createMenu()
+}
+```
+
+在 background.js中添加createMenu()函数
+
+```js
+// 设置菜单栏
+ function createMenu() {
+       // darwin表示macOS，针对macOS的设置
+       if (process.platform === 'darwin') {
+           const template = [
+           {
+               label: 'App Demo',
+               submenu: [
+                   {
+                       role: 'about'
+                   },
+                   {
+                       role: 'quit'
+                   }]
+           }]
+           let menu = Menu.buildFromTemplate(template)
+           Menu.setApplicationMenu(menu)
+       } else {
+           // windows及linux系统
+           Menu.setApplicationMenu(null)
+       }
+   }
+```
+
+## 显示应用图标
+
+修改 background.js中的createWindow()函数
+
+```js
+async function createWindow() {
+  // Create the browser window.
+  const win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      webSecurity: false,
+      // Use pluginOptions.nodeIntegration, leave this alone
+      // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
+      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+    },
++   // eslint-disable-next-line no-undef
++   icon: 'public/icons/avatar-icon.png'
+  })
+
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    if (!process.env.IS_TEST) win.webContents.openDevTools()
+  } else {
+    createProtocol('app')
+    // Load the index.html when not in development
+    win.loadURL('app://./index.html')
+  }
+  createMenu()
+}
+```
+
+## 修改安装包图标与名称
+
+修改vue.config.js
+
+```js
+module.exports = defineConfig({
+  transpileDependencies: true,
++ pluginOptions: {
++   electronBuilder: {
++     builderOptions: {
++       win: {
++         icon: './public/icons/avatar-icon.png'
++       },
++       mac: {
++         icon: './public/icons/avatar-icon.png'
++       },
++       productName: 'MCU_Tools'
++     }
++   }
++ }
+})
+```
+
