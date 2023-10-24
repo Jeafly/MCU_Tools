@@ -2,8 +2,8 @@
   <div id="app">
     <nav>
       <router-link to="/">Home</router-link> |
-      <router-link to="/Tool">Tool</router-link>  |
-      <router-link to="/Test">Test</router-link> 
+      <router-link to="/Tool">SC8P1712D</router-link>  |
+      <router-link to="/Test">CMS79F113</router-link> 
     </nav>
     <router-view/>
   </div>
