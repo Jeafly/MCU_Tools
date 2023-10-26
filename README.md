@@ -341,3 +341,22 @@ module.exports = defineConfig({
 })
 ```
 
+
+
+
+
+PS：
+
+JavaScript中直接给数组赋值不会立即刷新,如：`Array1[0] = Array2[0]`,需要使用this.$set(Array,index,value),如：`this.$set(Array1,0,Array2[0])`
+
+
+
+使用array1 = array2只能引用数组，改变array1的值array2也会改变，可以将原数组转化成JSON再解析回来，完成数组的深拷贝。
+
+```js
+//浅拷贝
+this.GPIOB[i].mode = this.modes;
+//深拷贝
+this.GPIOB[i].mode = JSON.parse(JSON.stringify(this.modes));	
+```
+

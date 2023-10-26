@@ -4,69 +4,29 @@
       <el-descriptions-item label="型号">SC8P1712D</el-descriptions-item>
     </el-descriptions>
     <el-form ref="form" label-width="200px" :inline="false"> 
-      <el-form-item label="" width="200">
-     
-          RA7: <el-select v-model="GPIOA[0].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;" disabled>
-            <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-              </el-option-group>
-          </el-select>
-          RA6: <el-select v-model="GPIOA[1].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-              <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          RA5: <el-select v-model="GPIOA[2].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-              <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          RA4: <el-select v-model="GPIOA[3].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-              <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          RA3: <el-select v-model="GPIOA[4].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-              <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          RA2: <el-select v-model="GPIOA[5].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-            <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          RA1: <el-select v-model="GPIOA[6].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-              <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          RA0: <el-select v-model="GPIOA[7].value" placeholder="请选择" @change="selectChanged" size="mini" clearable style="width:110px;">
-              <el-option-group v-for="(modes,index) in FullModes" :key="index" :label="modes.type">
-              <el-option v-for="(mode,index) in modes.options" :key="index" :label="mode.label" :value="mode.value" :disabled="mode.disabled">
-              </el-option>
-            </el-option-group>
-          </el-select>
-          
+        <el-form-item label="" width="200" style=" height: 15px;">
+          RA7: <el-cascader v-model="GPIOA[0].value" :options="GPIOA[0].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[0].disabled"></el-cascader>
+          RA6: <el-cascader v-model="GPIOA[1].value" :options="GPIOA[1].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[1].disabled"></el-cascader>
+          RA5: <el-cascader v-model="GPIOA[2].value" :options="GPIOA[2].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[2].disabled"></el-cascader>
+          RA4: <el-cascader v-model="GPIOA[3].value" :options="GPIOA[3].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[3].disabled"></el-cascader>
         </el-form-item>
         <el-form-item label="" width="200" style=" height: 15px;">
-          RB7: <el-cascader v-model="GPIOB[0].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="true"></el-cascader>
-          RB6: <el-cascader v-model="GPIOB[1].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
-          RB5: <el-cascader v-model="GPIOB[2].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
-          RB4: <el-cascader v-model="GPIOB[3].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
+          RA3: <el-cascader v-model="GPIOA[4].value" :options="GPIOA[4].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[4].disabled"></el-cascader>
+          RA2: <el-cascader v-model="GPIOA[5].value" :options="GPIOA[5].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[5].disabled"></el-cascader>
+          RA1: <el-cascader v-model="GPIOA[6].value" :options="GPIOA[6].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[6].disabled"></el-cascader>
+          RA0: <el-cascader v-model="GPIOA[7].value" :options="GPIOA[7].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOA[7].disabled"></el-cascader>
         </el-form-item>
         <el-form-item label="" width="200" style=" height: 15px;">
-          RB3: <el-cascader v-model="GPIOB[4].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
-          RB2: <el-cascader v-model="GPIOB[5].value" :options="GPIOB[5].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
-          RB1: <el-cascader v-model="GPIOB[6].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
-          RB0: <el-cascader v-model="GPIOB[7].value" :options="modes" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable></el-cascader>
+          RB7: <el-cascader v-model="GPIOB[0].value" :options="GPIOB[0].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[0].disabled"></el-cascader>
+          RB6: <el-cascader v-model="GPIOB[1].value" :options="GPIOB[1].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[1].disabled"></el-cascader>
+          RB5: <el-cascader v-model="GPIOB[2].value" :options="GPIOB[2].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[2].disabled"></el-cascader>
+          RB4: <el-cascader v-model="GPIOB[3].value" :options="GPIOB[3].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[3].disabled"></el-cascader>
+        </el-form-item>
+        <el-form-item label="" width="200" style=" height: 15px;">
+          RB3: <el-cascader v-model="GPIOB[4].value" :options="GPIOB[4].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[4].disabled"></el-cascader>
+          RB2: <el-cascader v-model="GPIOB[5].value" :options="GPIOB[5].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[5].disabled"></el-cascader>
+          RB1: <el-cascader v-model="GPIOB[6].value" :options="GPIOB[6].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[6].disabled"></el-cascader>
+          RB0: <el-cascader v-model="GPIOB[7].value" :options="GPIOB[7].mode" @change="selectChanged" size="mini" :show-all-levels="true" style="width:160px;" clearable :disabled="GPIOB[7].disabled"></el-cascader>
         </el-form-item>
         <el-form-item label="" width="200">
             <el-table :data="IOREG" height="530" size="small" border stripe
@@ -155,13 +115,13 @@
       
       <el-form ref="form" label-width="90px" :inline="true">
         <el-form-item label="TIM2预分频:">
-          <el-select v-model="Freq.TIM2_Div" placeholder="请选择" @change="FreqSelectChanged" clearable style="width:100px;" >
+          <el-select v-model="TIM2.PreDiv" placeholder="请选择" @change="FreqSelectChanged" clearable style="width:100px;" >
             <el-option v-for="(select,index) in Tim2DivSelecct" :key="index" :label="select.label" :value="select.value" >
             </el-option>           
           </el-select>
         </el-form-item>
         <el-form-item label="TIM2频率:">
-          <el-select v-model="TIM2.div" placeholder="请选择" @change="FreqSelectChanged" clearable style="width:100px;" >
+          <el-select v-model="TIM2.SufDiv" placeholder="请选择" @change="FreqSelectChanged" clearable style="width:100px;" >
             <el-option v-for="(select,index) in Time2_Freq" :key="index" :label="select.label" :value="select.value" :disabled="select.disabled">
             </el-option>           
           </el-select>
@@ -360,7 +320,8 @@ data() {
       Enable: null
     },
     TIM2: {
-      div: "",
+      PreDiv: "",
+      SufDiv: "",
       unit: null,
       arr: "",
       peroid: null,
@@ -425,139 +386,53 @@ data() {
           label: "模拟输入",
       },
     ],
-    NoAnalg_PDModes: [
-    {
-        value: "0",
-        label: "推挽输出",
-        children: [
-          {
-            value: '1',
-            label: '默认高',
-          },
-          {
-            value: '0',
-            label: '默认低',
-          },
-        ] 
-      },
-      {
-        value: "1",
-        label: "浮空输入",
-        children: [
-          {
-            value: '1',
-            label: '允许中断',
-          },
-          {
-            value: '0',
-            label: '禁止中断',
-          }]
-      },
-      {
-        value: "2",
-        label: "上拉输入",
-        children: [
-          {
-            value: '1',
-            label: '允许中断',
-          },
-          {
-            value: '0',
-            label: '禁止中断',
-          }]
-      },
-      {
-        value: "3",
-        label: "下拉输入",
-        disabled: true,
-        children: [
-          {
-            value: '1',
-            label: '允许中断',
-          },
-          {
-            value: '0',
-            label: '禁止中断',
-          }]
-      },
-      {
-          value: "4",
-          label: "模拟输入",
-          disabled: true,
-      },
-    ],
-    FullModes: [
-      {
-        type: "输出模式",
-        options: [{
-          value: ["0", "1", "x", "x","x", "x"],
-          label: "推挽输出1",
-        },
-        {
-          value: ["0", "0", "x", "x", "x","x"],
-          label: "推挽输出0",
-        }]
-      },
-      {
-        type: "输入模式",
-        options: [{
-          value: ["1", "x", "0", "0","x", "0"],
-          label: "浮空输入",
-        },
-        {
-          value: ["1", "x", "1", "0","x", "0"],
-          label: "上拉输入",
-        },
-        {
-          value: ["1", "x", "0", "1","x", "0"],
-          label: "下拉输入",
-        },
-        {
-          value: ["1", "x", "0", "0","x", "1"],
-          label: "模拟输入",
-        }]
-      },    
-    ],
     GPIOA: [
       {
         name: "RA7",
         value: "",
-        
+        mode: [],
         disabled:false
       },
       {
         name: "RA6",
         value: "",
+        mode: [],
         disabled:false
       },
       {
         name: "RA5",
         value: "",
+        mode: [],
         disabled:false
       },
       {
         name: "RA4",
         value: "",
+        mode: [],
         disabled:false
       },
       {
         name: "RA3",
         value: "",
+        mode: [],
         disabled:false
       },
       {
         name: "RA2",
         value: "",
+        mode: [],
         disabled:false
       },
       {
         name: "RA1",
         value: "",
+        mode: [],
         disabled:false
       },
       {
         name: "RA0",
         value: "",
+        mode: [],
         disabled:false
       },
     ],
@@ -565,13 +440,13 @@ data() {
       {
         name: "RB7",
         value: "",
-        mode: this.modes,
+        mode: [],
         disabled:false
       },
       {
         name: "RB6",
         value: "",
-        mode: this.modes,
+        mode: [],
         disabled:false
       },
       {
@@ -583,13 +458,13 @@ data() {
       {
         name: "RB4",
         value: "",
-        mode: this.modes,
+        mode: [],
         disabled:false
       },
       {
         name: "RB3",
         value: "",
-        mode: this.modes,
+        mode: [],
         disabled:false
       },
       {
@@ -601,13 +476,13 @@ data() {
       {
         name: "RB1",
         value: "",
-        mode: this.modes,
+        mode: [],
         disabled:false
       },
       {
         name: "RB0",
         value: "",
-        mode: this.modes,
+        mode: [],
         disabled:false
       },
     ],
@@ -881,81 +756,43 @@ methods: {
     }
   },
   selectChanged() {
-    //var Arr = "";
-    for (let i = 0; i < 8; i++) {
-      if (this.GPIOA[i].value === "") {
-          for(let j = 0; j < 5; j++) {
-             // this.IOREG[j].CurrentBit[i] = this.IOREG[j].DefaultBit[i];
-             // this.IOREG[j].orgin[i] = 1;
-             this.$set(this.IOREG[j].CurrentBit,i,this.IOREG[j].DefaultBit[i]);
-              this.$set(this.IOREG[j].orgin,i,1);
-          }
-          // this.IOREG[5].CurrentBit[i] = this.IOREG[5].DefaultBit[i];
-          // this.IOREG[j].orgin[i] = 1;
-          this.$set(this.IOREG[10].CurrentBit,i,this.IOREG[10].DefaultBit[i]);
-          this.$set(this.IOREG[10].orgin,i,1);
-      } else {
-          for(let j = 0; j < 5; j++) {     
-              if (this.GPIOA[i].value[j] === "x") {
-                  // this.IOREG[j].CurrentBit[i] = this.IOREG[j].DefaultBit[i];
-                  // this.IOREG[j].orgin[i] = 1;
-                  this.$set(this.IOREG[j].CurrentBit,i,this.IOREG[j].DefaultBit[i]);
-                  this.$set(this.IOREG[j].orgin,i,1);
-              }else{
-                  // this.IOREG[j].CurrentBit[i] = this.GPIOA[7-i].value[j];
-                  // this.IOREG[j].orgin[i] = 0;
-                  this.$set(this.IOREG[j].CurrentBit,i,this.GPIOA[i].value[j]);
-                  this.$set(this.IOREG[j].orgin,i,0);
-              }   
-          }
-          if (this.GPIOA[i].value[5] === "x")
-          {
-            this.$set(this.IOREG[10].CurrentBit,i,this.IOREG[10].DefaultBit[i]);
-             this.$set(this.IOREG[10].orgin,i,1);
-          }
-          else
-          {
-              this.$set(this.IOREG[10].CurrentBit,i,this.GPIOA[i].value[5]);
-              this.$set(this.IOREG[10].orgin,i,0);
-          }
-      }
-    }
-    for (let i = 0; i < 8; i++) {
-      if (this.GPIOB[i].value === "") {
-          for(let j = 0; j < 5; j++) {
-              // this.IOREG[j+5].CurrentBit[i] = this.IOREG[j+5].DefaultBit[i]
-              // this.IOREG[j+5].orgin[i] = 1;
-              this.$set(this.IOREG[j+5].CurrentBit,i,this.IOREG[j+5].DefaultBit[i]);
-              this.$set(this.IOREG[j+5].orgin,i,1);
-          }
-          this.$set(this.IOREG[11].CurrentBit,i,this.IOREG[11].DefaultBit[i]);
-              this.$set(this.IOREG[11].orgin,i,1);
-      } else {
-          for(let j = 0; j < 5; j++) {        
-              if (this.GPIOB[i].value[j] === "x") {
-                  // this.IOREG[j+5].CurrentBit[i] = this.GPIOA[i].value[j];
-                  // this.IOREG[j+5].orgin[i] = 0;
-                  this.$set(this.IOREG[j+5].CurrentBit,i,this.IOREG[j+5].DefaultBit[i]);
-                  this.$set(this.IOREG[j+5].orgin,i,1);
-              }else{
-                  // this.IOREG[j+5].CurrentBit[i] = this.IOREG[j+5].DefaultBit[i]
-                  // this.IOREG[j+5].orgin[i] = 1;
-                  this.$set(this.IOREG[j+5].CurrentBit,i,this.GPIOB[i].value[j]);
-                  this.$set(this.IOREG[j+5].orgin,i,0);
-              }   
-          }
-          if (this.GPIOB[i].value[5] === "x") {
-              this.$set(this.IOREG[11].CurrentBit,i,this.IOREG[11].DefaultBit[i]);
-              this.$set(this.IOREG[11].orgin,i,1);
-          }else{
-              this.$set(this.IOREG[11].CurrentBit,i,this.GPIOB[i].value[5]);
-              this.$set(this.IOREG[11].orgin,i,0);
-          }   
-      }
-    } 
     for(let j = 0; j < 8; j++)
     {
-      
+        this.input(this.IOREG,0,j,null);
+        this.input(this.IOREG,1,j,null);
+        this.input(this.IOREG,2,j,null);
+        this.input(this.IOREG,3,j,null);
+        this.input(this.IOREG,4,j,null);
+        this.input(this.IOREG,10,j,null);   
+      if (this.GPIOA[j].value[0] === "0") {  /* "0" "0"/"1" */
+        this.input(this.IOREG,0,j,"0");
+        this.input(this.IOREG,1,j,this.GPIOA[j].value[1]);      
+      }
+      else if (this.GPIOA[j].value[0] === "1")
+      {
+        this.input(this.IOREG,0,j,"1");
+        this.input(this.IOREG,4,j,this.GPIOA[j].value[1]);
+      }
+      else if(this.GPIOA[j].value[0] === "2")
+      {
+        this.input(this.IOREG,0,j,"1");
+        this.input(this.IOREG,2,j,"1");
+        this.input(this.IOREG,4,j,this.GPIOA[j].value[1]);
+      }
+      else if(this.GPIOA[j].value[0] === "3")
+      {
+        this.input(this.IOREG,0,j,"1");
+        this.input(this.IOREG,3,j,"1");
+        this.input(this.IOREG,4,j,this.GPIOA[j].value[1]);
+      }
+      else if(this.GPIOA[j].value[0] === "4")
+      {
+        this.input(this.IOREG,0,j,"1");
+        this.input(this.IOREG,6,j,"1");
+      }
+    }
+    for(let j = 0; j < 8; j++)
+    {
         this.input(this.IOREG,5,j,null);
         this.input(this.IOREG,6,j,null);
         this.input(this.IOREG,7,j,null);
@@ -1058,9 +895,9 @@ methods: {
      
     }
     var TIM2_Tmpx,TIM2_Tmpy,TIM2_Tmpz ;
-    if(this.Freq.TIM2_Div !== ""){
-    TIM2_Tmpx = this.Sys.Fsys/4/Math.pow(4,this.Freq.TIM2_Div);
-      for (let i = 1; i < 16; i++) {
+    if(this.TIM2.PreDiv!== ""){
+    TIM2_Tmpx = this.Sys.Fsys/4/Math.pow(4,this.TIM2.PreDiv);
+      for (let i = 1; i <= 16; i++) {
         TIM2_Tmpy = TIM2_Tmpx/i ;
         TIM2_Tmpz = 1000000/TIM2_Tmpy;
         
@@ -1078,8 +915,8 @@ methods: {
       //alert(this.TIM0.arr);
       this.TIM0.peroid = this.TIM0.unit * this.TIM0.arr;
     }
-    if(this.TIM2.div !== ""){
-      this.TIM2.unit = this.Time2_Freq[this.TIM2.div].unit;
+    if(this.TIM2.SufDiv !== ""){
+      this.TIM2.unit = this.Time2_Freq[this.TIM2.SufDiv].unit;
     }
     if(this.TIM2.arr !== ""){
       //alert(this.TIM0.arr);
@@ -1144,7 +981,14 @@ methods: {
           this.$set(this.FreqREG[1].orgin,i+5,1);
         }
       }
-
+    }
+    if(this.WDT.Enable === "")
+    {
+      this.input(this.FreqREG,2,7,null);
+    }
+    else
+    {
+      this.input(this.FreqREG,2,7,this.WDT.Enable);
     }
     let arr;
     if(this.TIM0.arr === "")
@@ -1160,9 +1004,7 @@ methods: {
     }
     else
     {
-      arr = this.numToArray(this.TIM0.arr.toString(),2,8);
-      alert(this.TIM0.arr);
-      alert(arr);
+      arr = this.numToArray(256 - Number(this.TIM0.arr),2,8);
       this.input(this.FreqREG,3,0,arr[0]);
       this.input(this.FreqREG,3,1,arr[1]);
       this.input(this.FreqREG,3,2,arr[2]);
@@ -1171,6 +1013,30 @@ methods: {
       this.input(this.FreqREG,3,5,arr[5]);
       this.input(this.FreqREG,3,6,arr[6]);
       this.input(this.FreqREG,3,7,arr[7]);
+    }
+    if (this.TIM2.PreDiv === "") {
+      this.input(this.FreqREG,4,6,null);
+      this.input(this.FreqREG,4,7,null);
+    }
+    else
+    {
+      arr = this.numToArray(Number(this.TIM2.PreDiv),2,2);
+      this.input(this.FreqREG,4,6,arr[0]);
+      this.input(this.FreqREG,4,7,arr[1]);
+    }
+    if (this.TIM2.SufDiv === "") {
+      this.input(this.FreqREG,4,1,null);
+      this.input(this.FreqREG,4,2,null);
+      this.input(this.FreqREG,4,3,null);
+      this.input(this.FreqREG,4,4,null);
+    }
+    else
+    {
+      arr = this.numToArray(Number(this.TIM2.SufDiv),2,4);
+      this.input(this.FreqREG,4,1,arr[0]);
+      this.input(this.FreqREG,4,2,arr[1]);
+      this.input(this.FreqREG,4,3,arr[2]);
+      this.input(this.FreqREG,4,4,arr[3]);
     }
     this.GetValue(this.FreqREG,this.FreqREG.length);
   },
@@ -1242,31 +1108,62 @@ methods: {
   },
   
   test() {
-   // this.GPIOB[5].mode = this.modes;
-    
+   
     alert(this.GPIOB[5].mode);
     console.log(this.GPIOB[5].mode);
   },
 },
-mounted() {
-    this.GPIOB[5].mode = this.modes;
-    if( this.IOREG[7].DefaultBit[5] === "x")
-    {
-      this.GPIOB[5].mode[2].disabled = true;
-    }
-    if( this.IOREG[8].DefaultBit[5] === "x")
-    {
-      this.GPIOB[5].mode[3].disabled = true;
-    }
-    if( this.IOREG[9].DefaultBit[5] === "x")
-    {
-      this.GPIOB[5].mode[3].disabled = true;
+  mounted() {
+    for (let i = 0; i < this.GPIOA.length; i++) {
+      this.GPIOA[i].mode = JSON.parse(JSON.stringify(this.modes));
+      if( this.IOREG[0].DefaultBit[i] === "x")
+      {
+        this.GPIOA[i].disabled = true;
+      }
+      if( this.IOREG[3].DefaultBit[i] === "x")
+      {
+        this.GPIOA[i].mode[2].disabled = true;
+      }
+      if( this.IOREG[4].DefaultBit[i] === "x")
+      {
+        this.GPIOA[i].mode[3].disabled = true;
+      }
+      if( this.IOREG[5].DefaultBit[i] === "x")
+      {
+        this.GPIOA[i].mode[1].children[0].disabled = true;
+        this.GPIOA[i].mode[2].children[0].disabled = true;
+        this.GPIOA[i].mode[3].children[0].disabled = true;
+      } 
+      if( this.IOREG[10].DefaultBit[i] === "x")
+      {
+        this.GPIOA[i].mode[4].disabled = true;
+      }   
     } 
-    if( this.IOREG[11].DefaultBit[5] === "x")
-    {
-      this.GPIOB[5].mode[4].disabled = true;
-    } 
-   
+    for (let i = 0; i < this.GPIOB.length; i++) {
+      this.GPIOB[i].mode = JSON.parse(JSON.stringify(this.modes));
+      if( this.IOREG[5].DefaultBit[i] === "x")
+      {
+        this.GPIOB[i].disabled = true;
+      }
+      if( this.IOREG[7].DefaultBit[i] === "x")
+      {
+        this.GPIOB[i].mode[2].disabled = true;
+      }
+      if( this.IOREG[8].DefaultBit[i] === "x")
+      {
+        this.GPIOB[i].mode[3].disabled = true;
+      }
+      if( this.IOREG[9].DefaultBit[i] === "x")
+      {
+        this.GPIOB[i].mode[1].children[0].disabled = true;
+        this.GPIOB[i].mode[2].children[0].disabled = true;
+        this.GPIOB[i].mode[3].children[0].disabled = true;
+      } 
+      if( this.IOREG[11].DefaultBit[i] === "x")
+      {
+        this.GPIOB[i].mode[4].disabled = true;
+      }   
+    }   
   },
 };
 </script>
